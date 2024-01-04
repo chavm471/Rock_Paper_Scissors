@@ -1,6 +1,7 @@
 //1 = rock
 //2 = paper
 //3 = scissors
+//variables
 
 //this function gets a randomizes computer choice.
 function getComputerChoice(){
@@ -26,6 +27,8 @@ function greetings(){
 
 function playRound(playerSelection, computerSelection){
     let results = "";
+    let playerScore = 0;
+    let computerScore = 0;
 
     //make the whole word lower case
     playerSelection = playerSelection.toLowerCase();
@@ -33,12 +36,12 @@ function playRound(playerSelection, computerSelection){
     //if player chooses rock and computer chooses paper
     //player loses
     if(playerSelection == "rock" && computerSelection == "paper"){
-        results = "You lose! Paper beats rock";
+        results = "Computer Wins!";
     }
     //if player chooses rock and computer chooses scissors
     //player wins
     else if(playerSelection == "rock" && computerSelection == "scissors"){
-        results = "You win! Rock beats Scissors";
+        results = "Player Wins!";
     }
     //if both choose rock
     else if (playerSelection == "rock" && computerSelection == "rock"){
@@ -47,13 +50,13 @@ function playRound(playerSelection, computerSelection){
     //if player chooses paper and computer chooses rock
     //player wins
     else if(playerSelection == "paper" && computerSelection == "rock"){
-        results = "You win! Paper beats Rock";
+        results = "Player Wins!";
     }
 
     //if player chooses paper and computer chooses scissors
     //player loses
     else if(playerSelection == "paper" && computerSelection == "scissors"){
-        results = "You lose! Scissors beats Paper";
+        results = "Computer Wins!";
     }
     //if both choose paper
     else if (playerSelection == "paper" && computerSelection == "paper"){
@@ -62,12 +65,12 @@ function playRound(playerSelection, computerSelection){
     //if player chooses scissors and computer chooses rock
     //player loses
     else if (playerSelection== "scissors" && computerSelection == "rock"){
-        results = "You lose! Rock beats Scissors";
+        results = "Computer Wins!";
     }
     //if player chooses scissors and computer chooses paper
     //player wins
-    else if (playerSelection== "scissors" && computerSelection == "paper"){
-        results = "You win! Scissors beats Paper";
+    else if (playerSelection == "scissors" && computerSelection == "paper"){
+        results = "Player Wins!";
     }
      //if both choose scissors
      else if (playerSelection == "scissors" && computerSelection == "scissors"){
@@ -75,29 +78,36 @@ function playRound(playerSelection, computerSelection){
     }
     return results;
 }
-
+//returns winner
 function game(){
-    let playerWins = 0;
-    let computerWins = 0;
-    greetings();
     //conditional for loop 
-    for(let i = 1; i => 5;++i){
+    for(let i = 1; i <= 5;++i){
         const playerSelection = prompt("Enter your choice.");
         const computerSelection = getComputerChoice();
-        console.log(playerSelection);
-        console.log(computerSelection);
-        console.log(playRound(playerSelection, computerSelection));
+        let winner = playRound(playerSelection, computerSelection);
+        console.log(winner);
+        if(winner == "Player Wins!"){
+            playerWins += 1;
+        }
+        if (winner == "Computer Wins!"){
+            computerWins += 1;
+        }
     }
 }
-
+let playerWins = 0;
+let computerWins = 0;
 greetings();
-//playerInput = prompt("Enter your choice.");
 //const playerSelection = "rock";
 /*const playerSelection = "rOck";
 const playerSelection = "Paper";
 const playerSelection = "scissors";*/
-//const playerSelection = "scissoRs";
-//const computerSelection = getComputerChoice();
-console.log(playerSelection);
-console.log(computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+game();
+if(computerWins > playerWins){
+    console.log(`The computer won! Computer score: ${computerWins} Player score: ${playerWins}`);
+}
+else if( computerWins < playerWins){
+    console.log(`You won! Player score: ${playerWins} Computer score: ${computerWins}`);
+}
+else{
+    console.log(`Its a tie! Player score: ${playerWins} Computer score: ${computerWins}`);
+}

@@ -82,7 +82,6 @@ function playRound(playerSelection, computerSelection){
 function game(){
     //conditional for loop 
     for(let i = 1; i <= 5;++i){
-        const playerSelection = prompt("Enter your choice.");
         const computerSelection = getComputerChoice();
         let winner = playRound(playerSelection, computerSelection);
         console.log(winner);
@@ -94,20 +93,34 @@ function game(){
         }
     }
 }
-let playerWins = 0;
-let computerWins = 0;
-greetings();
-//const playerSelection = "rock";
-/*const playerSelection = "rOck";
-const playerSelection = "Paper";
-const playerSelection = "scissors";*/
-game();
-if(computerWins > playerWins){
-    console.log(`The computer won! Computer score: ${computerWins} Player score: ${playerWins}`);
+
+//define the main function for the entry point of the program
+function main() {
+    let playerWins = 0;
+    let computerWins = 0;
+    greetings();
+
+    const buttons = document.querySelectorAll("button");
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            alert("You pressed it")
+        });
+    });
+
+    game();
+    if (computerWins > playerWins) {
+        console.log(`The computer won! Computer score: ${computerWins} Player score: ${playerWins}`);
+    }
+    else if (computerWins < playerWins) {
+        console.log(`You won! Player score: ${playerWins} Computer score: ${computerWins}`);
+    }
+    else {
+        console.log(`Its a tie! Player score: ${playerWins} Computer score: ${computerWins}`);
+    }
+
 }
-else if( computerWins < playerWins){
-    console.log(`You won! Player score: ${playerWins} Computer score: ${computerWins}`);
-}
-else{
-    console.log(`Its a tie! Player score: ${playerWins} Computer score: ${computerWins}`);
-}
+
+
+//call the main function to start the program
+main();

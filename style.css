@@ -1,0 +1,17 @@
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    height: 100vh;
+}
+h1{
+    display: flex;
+    justify-content: center;
+}
+/*use the # followed by the id attribute
+*/
+#content{
+    display: flex;
+    justify-content: center;
+}

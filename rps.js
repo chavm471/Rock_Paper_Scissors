@@ -2,7 +2,8 @@
 //2 = paper
 //3 = scissors
 //variables
-
+let playerWins = 0;
+let computerWins = 0;
 //this function gets a randomizes computer choice.
 function getComputerChoice(){
     let randomInt = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
@@ -25,10 +26,12 @@ function greetings(){
     console.log("Select either rock paper or scissors by typing in your choice.")
 }
 
+function checkforWinner(){
+    
+}
+
 function playRound(playerSelection, computerSelection){
     let results = "";
-    let playerScore = 0;
-    let computerScore = 0;
 
     //make the whole word lower case
     playerSelection = playerSelection.toLowerCase();
@@ -78,38 +81,41 @@ function playRound(playerSelection, computerSelection){
     }
     return results;
 }
-//returns winner
-function game(){
-    //conditional for loop 
-    for(let i = 1; i <= 5;++i){
-        const computerSelection = getComputerChoice();
-        let winner = playRound(playerSelection, computerSelection);
-        console.log(winner);
-        if(winner == "Player Wins!"){
-            playerWins += 1;
-        }
-        if (winner == "Computer Wins!"){
-            computerWins += 1;
-        }
-    }
+function updateScoreboard(){
+    document.getElementById("PlayerWins").textContent = playerWins;
+    document.getElementById("ComputerWins").textContent = computerWins;
 }
+//returns winner
+function game(playerChoice) {
+    const computerSelection = getComputerChoice();
+    let winner = playRound(playerChoice, computerSelection);
+    console.log(winner);
+    if (winner == "Player Wins!") {
+        playerWins += 1;
+    }
+    if (winner == "Computer Wins!") {
+        computerWins += 1;
+    }
+    updateScoreboard();
+}
+
 
 //define the main function for the entry point of the program
 function main() {
-    let playerWins = 0;
-    let computerWins = 0;
+    let playerChoice;
     greetings();
 
     const buttons = document.querySelectorAll("button");
 
     buttons.forEach((button) => {
         button.addEventListener("click", () => {
-            alert("You pressed it")
+            playerChoice = button.id
+            console.log(playerChoice)
+            game(playerChoice);
         });
     });
 
-    game();
-    if (computerWins > playerWins) {
+    /*if (computerWins > playerWins) {
         console.log(`The computer won! Computer score: ${computerWins} Player score: ${playerWins}`);
     }
     else if (computerWins < playerWins) {
@@ -117,7 +123,7 @@ function main() {
     }
     else {
         console.log(`Its a tie! Player score: ${playerWins} Computer score: ${computerWins}`);
-    }
+    }*/
 
 }
 

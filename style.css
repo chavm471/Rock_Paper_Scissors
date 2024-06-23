@@ -4,14 +4,36 @@ body{
     flex-direction: column;
     align-content: space-between;
     height: 100vh;
+    margin: 0;
+    text-align: center;
 }
 h1{
-    display: flex;
-    justify-content: center;
+    margin-bottom: 20px;
 }
 /*use the # followed by the id attribute
 */
 #content{
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
+}
+
+.results{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.ScoreBoard{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.playerscore,.computerscore{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
 }

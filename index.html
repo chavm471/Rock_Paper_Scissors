@@ -3,7 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title> Rock Paper Scissors!</title>
-        <script src="rps.js"></script>
+        <!--Defer makes the javascript run after the dom elements
+        are loaded before the script runs-->
+        <script src="rps.js" defer></script>
         <link rel="stylesheet" href="./style.css">
     </head>
     <body>
@@ -13,5 +15,19 @@
             <button id="Paper">Paper</button>
             <button id="Scissors">Scissors</button>
         </div>
+        <div class="results">
+            <h2>Score</h2>
+            <div class="ScoreBoard">
+                <div class="playerscore">
+                    <h3>Player Score</h3>
+                    <p id="PlayerWins"></p>
+                </div>
+                <div class="computerscore">
+                    <h3>Computer Score</h3>
+                    <p id="ComputerWins"></p>
+                </div>
+            </div>
+        </div>
     </body>
+            
 </html>

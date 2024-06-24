@@ -4,6 +4,22 @@
 //variables
 let playerWins = 0;
 let computerWins = 0;
+
+/*i put this here so it wouldnt print multiple times.
+it would just change whats on the DOM. I think another method
+would to add a div to the html page and just edit it everytime 
+someone wins.
+*/
+const printWinner = document.querySelector(".results");
+const print = document.createElement("div");
+print.classList.add("print");
+
+//this function resets the score 
+function reset(){
+    playerWins = 0;
+    computerWins = 0;
+}
+
 //this function gets a randomizes computer choice.
 function getComputerChoice(){
     let randomInt = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
@@ -26,8 +42,23 @@ function greetings(){
     console.log("Select either rock paper or scissors by typing in your choice.")
 }
 
+//this function checks if either player has reach the score of 5
 function checkforWinner(){
-    
+
+    if(playerWins == 5){
+        //make the announcement that the player wins
+        print.textContent = "The player wins the game!";
+        printWinner.appendChild(print);
+        //reset the game
+        reset();
+    }
+    if(computerWins == 5){
+        //make the announcement that the computer wins
+        print.textContent = "The computer wins the game!";
+        printWinner.appendChild(print);
+        //reset the game
+        reset();
+    }
 }
 
 function playRound(playerSelection, computerSelection){
@@ -102,19 +133,19 @@ function game(playerChoice) {
     let winner = playRound(playerChoice, computerSelection);
 
     //
-    const printWinner = document.querySelector(".results");
+    /*const printWinner = document.querySelector(".results");
     const print = document.createElement("div");
-    print.classList.add("print");
+    print.classList.add("print");*/
 
 
     if (winner == "Player Wins!") {
-        print.textContent = "You win!";
+        print.textContent = "1 point for the player!";
         printWinner.appendChild(print);
         playerWins += 1;
     }
     if (winner == "Computer Wins!") {
         computerWins += 1;
-        print.textContent = "You lost. The computer won!";
+        print.textContent = "1 point for the computer!";
         printWinner.appendChild(print);
     }
     else{
@@ -122,12 +153,14 @@ function game(playerChoice) {
         printWinner.appendChild(print)
     }
     updateScoreboard();
+    checkforWinner();
 }
 
 
 //define the main function for the entry point of the program
 function main() {
     let playerChoice;
+
     greetings();
 
     const buttons = document.querySelectorAll("button");

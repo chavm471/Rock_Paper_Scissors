@@ -82,19 +82,44 @@ function playRound(playerSelection, computerSelection){
     return results;
 }
 function updateScoreboard(){
-    document.getElementById("PlayerWins").textContent = playerWins;
-    document.getElementById("ComputerWins").textContent = computerWins;
+    const playerWinsElement = document.getElementById("PlayerWins");
+    const computerWinsElement = document.getElementById("ComputerWins");
+    
+    if(playerWinsElement && computerWinsElement){
+        playerWinsElement.textContent = playerWins;
+        computerWinsElement.textContent = computerWins;
+    }
+    else{
+        console.log("elements not found");
+    }
 }
 //returns winner
 function game(playerChoice) {
+    //get the computer selection
     const computerSelection = getComputerChoice();
+
+    //play the round
     let winner = playRound(playerChoice, computerSelection);
-    console.log(winner);
+
+    //
+    const printWinner = document.querySelector(".results");
+    const print = document.createElement("div");
+    print.classList.add("print");
+
+
     if (winner == "Player Wins!") {
+        print.textContent = "You win!";
+        printWinner.appendChild(print);
         playerWins += 1;
     }
     if (winner == "Computer Wins!") {
         computerWins += 1;
+        print.textContent = "You lost. The computer won!";
+        printWinner.appendChild(print);
+    }
+    else{
+        print.textContent = "Its a tie!";
+        printWinner.appendChild(print)
     }
     updateScoreboard();
 }
@@ -114,19 +139,7 @@ function main() {
             game(playerChoice);
         });
     });
-
-    /*if (computerWins > playerWins) {
-        console.log(`The computer won! Computer score: ${computerWins} Player score: ${playerWins}`);
-    }
-    else if (computerWins < playerWins) {
-        console.log(`You won! Player score: ${playerWins} Computer score: ${computerWins}`);
-    }
-    else {
-        console.log(`Its a tie! Player score: ${playerWins} Computer score: ${computerWins}`);
-    }*/
-
 }
-
 
 //call the main function to start the program
 main();

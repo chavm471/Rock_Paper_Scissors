@@ -143,7 +143,7 @@ function game(playerChoice) {
         printWinner.appendChild(print);
         playerWins += 1;
     }
-    if (winner == "Computer Wins!") {
+    else if (winner == "Computer Wins!") {
         computerWins += 1;
         print.textContent = "1 point for the computer!";
         printWinner.appendChild(print);
